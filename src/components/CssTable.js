@@ -55,10 +55,11 @@ const columns = [
   },
 ];
 
-const CssTable = ({...props}) => (
-  <div className="App">
-    <Table dataSource={data} columns={columns} pagination={false} bordered size={'small'}/>
-  </div>
-);
+const CssTable = (props) => {
+  const filterData = data.filter(({name = ''}) => name.includes(props.search.toLowerCase()));
+  return (
+    <Table dataSource={filterData} columns={columns} pagination={false} bordered size={'small'}/>
+  );
+};
 
 export default CssTable;
